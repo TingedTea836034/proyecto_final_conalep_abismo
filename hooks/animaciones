@@ -1,0 +1,46 @@
+// 1. REGLA DE REACT: Un Hook es solo una función que adentro usa otros Hooks (como useGSAP)
+export function useAnimate(nombreAnimacion, opciones = {}, dependencias = []) {
+  
+  // 2. Aquí adentro metemos el useGSAP que tú antes escribías en tu componente.
+  // Ahora el Hook lo va a escribir por ti en automático.
+  useGSAP(() => {
+
+    // 3. LA BÚSQUEDA DEL COMPORTAMIENTO:
+    // "nombreAnimacion" es un texto (por ejemplo: "secuencia").
+    // Esta línea va al archivo Catalogo y busca la propiedad que se llame igual.
+    const herramientaAnimacion = Catalogo[nombreAnimacion];
+
+    // Si escribiste mal el nombre, te avisa en la consola en lugar de romper la web.
+    if (!herramientaAnimacion) {
+      console.warn(`La herramienta "${nombreAnimacion}" no existe.`);
+      return;
+    }
+
+    // 4. EL ENCAPSULADOR RESPONSIVO (MatchMedia):
+    // Creamos el matchMedia aquí adentro. Así, cada componente nuevo que crees
+    // ya es responsivo automáticamente sin que tú escribas "matchMedia" otra vez.
+    const mm = gsap.matchMedia();
+
+    mm.add({
+      isDesktop: "(min-width: 800px)",
+      isMobile: "(max-width: 799px)"
+    }, (context) => {
+      // Averigua si la pantalla actual es computadora o celular
+      const { isDesktop } = context.conditions;
+
+      // 5. ¡EL DISPARO FINAL!:
+      // Ejecuta la función que encontramos en el catálogo ("secuencia") y le pasa
+      // todas las opciones (onComplete, tus pasos del preloader) MÁS el dato de si es desktop.
+      herramientaAnimacion({ ...opciones, isDesktop });
+    });
+
+    // 6. EL MENSAJERO DE LIMPIEZA (Rendimiento):
+    // Este "return" es vital en React. Cuando cambias de página y el componente desaparece,
+    // este bloque borra los scrollTriggers y animaciones de la memoria para que la web no se ponga lenta.
+    return () => {
+      mm.revert();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+
+  }, dependencias); // 7. Si "setFinished" cambia, el hook se entera gracias a este arreglo.
+}

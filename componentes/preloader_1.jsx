@@ -1,16 +1,9 @@
- import { useRef } from "react";
-
+import { useRef } from "react";
 import { gsap } from "gsap";
-
 import { useGSAP } from "@gsap/react";
-
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import Hoyo from "./hoyo_inmersivo";
-
-
 gsap.registerPlugin(ScrollTrigger);
-
 
 export default function Hero() {
 
@@ -27,66 +20,39 @@ export default function Hero() {
         mm.add({
 
             isDesktop: "(min-width: 800px)",
-
             isMobile: "(max-width: 799px)"
 
         }, (context) => {
 
             let { isDesktop } = context.conditions;
 
-
             // Intro común (rápida y ligera)
 
             gsap.from(".rev", { y: 20, opacity: 0, stagger: 0.05, duration: 0.8 });
 
-
             // Timeline Independiente
 
             gsap.timeline({
-
                 scrollTrigger: {
-
                     trigger: container.current, 
-
                     start: "top top",
-
                     // En móvil el scroll es más corto para que no canse
-
                     end: isDesktop ? "+=1200" : "+=800",
-
-                    scrub: isDesktop ? 1 : 0.5, // Menos scrub en móvil para evitar lag
-
+                    // Menos scrub en móvil para evitar lag
+                    scrub: isDesktop ? 1 : 0.5,
                     pin: true,
-
                     pinSpacing: true,
-
-                    invalidateOnRefresh: true, // Recalcula si giras el teléfono
-
+                    // Recalcula si giras el teléfono
+                    invalidateOnRefresh: true, 
                 }
 
             })
 
-            .to(".zoom", {
-
-                // Zoom más agresivo en desktop, más controlado en móvil
-
-                scale: 3,
-
-                opacity: 0,
-
-                ease: "power2.inOut",
-
-                
-
-            })
-
+            .to(".zoom", {scale: 3,opacity: 0,ease: "power2.inOut",})
             .to(".bg-h", { opacity: 0 }, "<");
 
-
             return () => ScrollTrigger.getAll().forEach(t => t.kill());
-
         });
-
     }, { scope: container });
 
 
@@ -95,24 +61,17 @@ export default function Hero() {
         <section ref={container} className="relative h-screen w-full bg-[#000b1e] overflow-hidden">
 
             <div className="bg-h absolute inset-0 opacity-50 z-0">
-
                 <Hoyo isActive={true}/>
-
             </div>
 
 
             <div className="zoom relative z-10 h-full flex flex-col items-center justify-center text-center uppercase font-black pointer-events-none px-4">
 
-                <h1 className="text-6xl md:text-[12rem] leading-none text-white break-words">
+                <h1 className="text-6xl md:text-[12rem] leading-none text-white wrap-break-word">
 
                     <span className="rev block">EL</span>
-
                     <span className="flex items-center justify-center">
-
                         <span className="rev text-blue-600">ABISMO</span>
-
-                        
-
                     </span>
 
                 </h1>
@@ -126,5 +85,4 @@ export default function Hero() {
         </section>
 
     );
-
 } 

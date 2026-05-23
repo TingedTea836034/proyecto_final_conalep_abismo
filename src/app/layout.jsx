@@ -1,6 +1,6 @@
 
 import "./globals.css";
- 
+import Navbar from "../../componentes/nav.jsx";
 
 export default function RootLayout({ children }) {
   return (
@@ -8,6 +8,7 @@ export default function RootLayout({ children }) {
       lang="es"
       
     >
+      <Navbar />
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
