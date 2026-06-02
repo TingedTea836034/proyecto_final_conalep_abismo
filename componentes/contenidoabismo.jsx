@@ -256,9 +256,7 @@ function Zone({ zone, i }) {
 export default function PaginaPrincipal() {
     const pageRef = useRef(null);
 
-    useGSAP(() => {
-        gsap.from(pageRef.current, { opacity: 0, duration: 1, ease: "power2.out" });
-    });
+
 
     useGSAP(() => {
         ZONES.forEach((_, i) => {

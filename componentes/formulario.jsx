@@ -169,12 +169,7 @@ export default function Formulario() {
         setEstado("transmitiendo");
     };
 
-    // Entrada suave
-    useGSAP(() => {
-        gsap.from(pageRef.current, { opacity: 0, duration: 1, ease: "power2.out" });
-        gsap.from(".form-panel", { y: 40, opacity: 0, duration: 1, delay: 0.2, ease: "power3.out" });
-    }, { scope: pageRef });
-
+ 
     const zonaActual = ZONAS[zonaIndex];
 
     return (

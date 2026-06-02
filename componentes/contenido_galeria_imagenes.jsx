@@ -33,21 +33,13 @@ const SIZES = [
 ];
 
 // Lightbox
-function Lightbox({ image, images, onClose, onNav }) {
+function Lightbox({ image, images, onNav }) {
     const overlayRef = useRef(null);
     const contentRef = useRef(null);
 
-    useGSAP(() => {
-        gsap.from(overlayRef.current, { opacity: 0, duration: 0.3, ease: "power2.out" });
-        gsap.from(contentRef.current, { scale: 0.96, opacity: 0, duration: 0.4, ease: "power3.out" });
-    });
 
-    const close = () => {
-        gsap.to(overlayRef.current, {
-            opacity: 0, duration: 0.25, ease: "power2.in",
-            onComplete: onClose
-        });
-    };
+
+   
 
     // Cerrar con ESC
     useGSAP(() => {

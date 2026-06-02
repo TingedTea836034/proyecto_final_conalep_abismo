@@ -5,10 +5,9 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const LINKS = [
-    { label: "El Abismo",  href: "/" },
     { label: "Galería",    href: "/pagina_galeria" },
     { label: "Formulario",  href: "/pagina_formulario" },
-    { label: "pagina sin nombre todavia ", href: "/expediciones" },
+    { label: "Experiencia", href: "/pagina_experiencia_fosa" },
     { label: "Acerca de",   href: "/pagina_acercade" },
 ];
 
