@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Reemplaza src con tus imágenes reales cuando las tengas
+// Reemplazar src con las  imágenes reales cuando las tengamos
 const IMAGES = [
-    { id: "0001", src: "/galeria/img1.jpg", title: "Challenger Deep", depth: "11.034m", category: "PAISAJES",     desc: "El punto más profundo conocido del planeta, fotografiado por primera vez en 1960." },
+    { id: "0001", src: "./public/img/suelo_fosa.jpeg", title: "Challenger Deep", depth: "11.034m", category: "PAISAJES",     desc: "El punto más profundo conocido del planeta, fotografiado por primera vez en 1960." },
     { id: "0002", src: "/galeria/img2.jpg", title: "Pez Linterna",    depth: "1.000m",  category: "CRIATURAS",    desc: "Produce bioluminiscencia para atraer presas en la oscuridad total de la zona crepuscular." },
     { id: "0003", src: "/galeria/img3.jpg", title: "Descenso",        depth: "4.000m",  category: "EXPEDICIONES", desc: "Imagen captada durante el descenso de la expedición Vescovo en 2019." },
     { id: "0004", src: "/galeria/img4.jpg", title: "Calamar Vampiro", depth: "3.000m",  category: "CRIATURAS",    desc: "Vampyroteuthis infernalis — ni calamar ni pulpo, una especie única que habita las profundidades." },
@@ -64,7 +64,7 @@ function Lightbox({ image, images, onNav }) {
             >
                 {/* Imagen */}
                 <div className="relative flex-1 min-h-75 md:min-h-500px rounded overflow-hidden border border-blue-500/20">
-                    <img
+                    <image
                         src={image.src}
                         alt={image.title}
                         className="w-full h-full object-cover"
@@ -132,7 +132,7 @@ function ImageCard({ image, index, onClick }) {
             onClick={onClick}
         >
             {/* Imagen */}
-            <img
+            <image
                 src={image.src}
                 alt={image.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
